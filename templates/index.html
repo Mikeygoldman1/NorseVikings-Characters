@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor Database</title>
+</head>
+<body>
+    <h1>Cast Information from Norsemen and Vikings TV Series </h1>
+
+    <h2>Search by TV Series (norsemen or viking)</h2>
+    <form method="POST">
+        <input type="text" name="table_search" placeholder="Search by table name">
+        <input type="submit" value="Search">
+    </form>
+
+    <h2>Search by Actor Name</h2>
+    <form method="POST">
+        <input type="text" name="actor_search" placeholder="Search by actor name">
+        <input type="submit" value="Search">
+    </form>
+
+    <button onclick="window.location.href='/'">Undo Search</button>
+
+    <table>
+        <tr>
+            <th>Actors</th>
+        </tr>
+        {% for row in norsemen_data %}
+        <tr>
+            <td><a href="{{ url_for('actor', table='norsemen', id=row.id) }}">{{ row.actor_name }}</a></td>
+        </tr>
+        {% endfor %}
+        {% for row in viking_data %}
+        <tr>
+            <td><a href="{{ url_for('actor', table='viking', id=row.id) }}">{{ row.actor_name }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

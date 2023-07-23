@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor Detail</title>
+</head>
+<body>
+    <h1>{{ actor.actor_name }}</h1>
+
+    <img src="{{ actor.img_url }}" alt="Actor Image">
+
+    <h2>Actor Information</h2>
+    <p>{{ actor.actor_description }}</p>
+
+    <h2>{{ actor.character_name }}</h2>
+    <p>{{ actor.character_description }}</p>
+
+    <button onclick="window.location.href='/'">Go Back</button>
+</body>
+</html>
