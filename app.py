@@ -36,13 +36,6 @@ def index():
     norsemen_data = Table1.query.all()
     viking_data = Table2.query.all()
 
-    # for row in norsemen_data:
-    #     if row.actor_name is None:
-    #         row.actor_name = row.character_description
-
-    # for row in viking_data:
-    #     if row.actor_name is None:
-    #         row.actor_name = row.character_name
     
     if request.method == 'POST':
         table_search = request.form.get('table_search')
