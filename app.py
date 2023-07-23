@@ -1,10 +1,11 @@
 from flask import Flask, render_template,request 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_
+import os 
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mikeygoldman1:Kolov1@localhost/vikings_norsemen_characters'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://mikeygoldman1:Kolov1@localhost/vikings_norsemen_characters')
 db = SQLAlchemy(app)
 
 class Table1(db.Model):
