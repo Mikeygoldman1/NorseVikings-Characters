@@ -6,29 +6,6 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
-
-class VikingscraperPipeline:
-    def process_item(self, item, spider):
-         # Check if the field is present
-        if "actor_description" in item:
-            # If the field is a list
-            if isinstance(item["actor_description"], list):
-                # Join the list items into a single string, then split and join to remove extra spaces
-                item["actor_description"] = ' '.join(' '.join(item["actor_description"]).split())
-            
-            # Clean the string
-            item["actor_description"] = self.clean_text(item["actor_description"])
-
-        return item
-
-    @staticmethod
-    def clean_text(text):
-        # Split and join the text to remove extra spaces, then remove unwanted characters
-        text = ' '.join(text.split())
-        return text.replace('"', '').replace('[', '').replace(']', '')
-        
-
 import psycopg2
 import os
 class SaveToPostgreSQLPipeline:
@@ -61,12 +38,5 @@ class SaveToPostgreSQLPipeline:
                          (item['img_url'],item['character_name'], item['character_description'], item['actor_name'], item['actor_description']))
         self.conn.commit()
         return item
-
-
-    def close_spider(self, spider):
-        self.cur.close()
-        self.conn.close()
-
-
 
         
