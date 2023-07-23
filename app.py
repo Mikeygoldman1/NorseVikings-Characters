@@ -5,7 +5,10 @@ import os
 
 
 app = Flask(__name__)
-uri = os.getenv("DATABASE_URL") 
+uri = os.getenv("DATABASE_URL")  # default to None if not set
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+# set the connection string -- use the local connection if uri is None
 app.config['SQLALCHEMY_DATABASE_URI'] = uri 
 db = SQLAlchemy(app)
 
